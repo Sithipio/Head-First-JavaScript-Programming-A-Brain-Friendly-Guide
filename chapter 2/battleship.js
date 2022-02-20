@@ -6,32 +6,35 @@
  document.write(randomPositionShip);
 */
 
-var randomLoc = Math.floor(Math.random() * 5);
-var location1 = randomLoc;
-var location2 = location1 + 1;
-var location3 = location2 + 1;
+const randomLoc = Math.floor(Math.random() * 5);
+const location1 = randomLoc;
+const location2 = location1 + 1;
+const location3 = location2 + 1;
 
-var guess;
-var hits = 0;
-var guesses = 0;
+let guess;
+let hits = 0;
+let guesses = 0;
 
-var isSunk = false;
+let isSunk = false;
 
-while (isSunk == false) {
-	guess = prompt("Ready, aim, fire! (enter a number 0-6):");
-	if (guess < 0 || guess > 6) {
-		alert("Please enter a valid cell number!");
-	}
-	else {
-		guesses = guesses + 1;                 
-       (guess == location1 && firstShipPart == false) ? (firstShipPart = true, hits = hits + 1, alert("HIT")) : 
-        (guess == location2 && secondShipPart == false) ? (secondShipPart = true, hits = hits + 1 , alert("HIT")) : 
-        (guess == location3 && thirdShipPart == false) ? (thirdShipPart = true, hits = hits + 1, alert("HIT")) : alert("MISS!");
-			if (hits >= 3) {
-				isSunk = true;
-				alert("You sank my battleship!");
-			}
-		}
-	}
-var stats = "You took " + guesses + " guesses to sink the battleship, " + "whitch means your shoting accuracy was " + (3/guesses);
+let firstShipPart = true;
+let secondShipPart = true;
+let thirdShipPart = true;
+
+while (isSunk === false) {
+    guess = +prompt("Ready, aim, fire! (enter a number 0-6):");
+    if (guess < 0 || guess > 6) {
+        alert("Please enter a valid cell number!");
+    } else {
+        guesses = guesses + 1;
+        (guess === location1 && firstShipPart) ? (firstShipPart = false, hits = hits + 1, alert("HIT")) :
+            (guess === location2 && secondShipPart) ? (secondShipPart = false, hits = hits + 1 , alert("HIT")) :
+                (guess === location3 && thirdShipPart) ? (thirdShipPart = false, hits = hits + 1, alert("HIT")) : alert("MISS!");
+        if (hits >= 3) {
+            isSunk = true;
+            alert("You sank my battleship!");
+        }
+    }
+}
+const stats = "You took " + guesses + " guesses to sink the battleship, " + "whitch means your shoting accuracy was " + (3 / guesses);
 alert(stats);
