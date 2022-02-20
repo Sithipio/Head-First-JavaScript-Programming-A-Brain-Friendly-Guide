@@ -6,9 +6,10 @@
  document.write(randomPositionShip);
 */
 
-var location1 = 3;
-var location2 = 4;
-var location3 = 5;
+var randomLoc = Math.floor(Math.random() * 5);
+var location1 = randomLoc;
+var location2 = location1 + 1;
+var location3 = location2 + 1;
 
 var guess;
 var hits = 0;
@@ -22,16 +23,13 @@ while (isSunk == false) {
 		alert("Please enter a valid cell number!");
 	}
 	else {
-		guesses = guesses + 1;
-		if ( guess == location1 || guess == location2 || guess == location3){
-			hits = hits + 1;
-			alert("HIT!");
-			if (hits == 3) {
+		guesses = guesses + 1;                 
+       (guess == location1 && firstShipPart == false) ? (firstShipPart = true, hits = hits + 1, alert("HIT")) : 
+        (guess == location2 && secondShipPart == false) ? (secondShipPart = true, hits = hits + 1 , alert("HIT")) : 
+        (guess == location3 && thirdShipPart == false) ? (thirdShipPart = true, hits = hits + 1, alert("HIT")) : alert("MISS!");
+			if (hits >= 3) {
 				isSunk = true;
 				alert("You sank my battleship!");
-				}
-			} else {
-				alert("MISS!");
 			}
 		}
 	}
